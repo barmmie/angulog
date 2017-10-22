@@ -1,0 +1,18 @@
+
+
+<div class="col-md-6 col-md-offset-3 content">
+    <div class="title m-b-md">
+        Angulog
+    </div>
+
+    <div class="links">
+        <a [routerLink]="['/home']">Home</a>
+        <a *ngIf="auth.isLoggedOut()" [routerLink]="['/login']">Login</a>
+        <a *ngIf="auth.isLoggedOut()" [routerLink]="['/register']">Register</a>
+
+        <a *ngIf="auth.isLoggedIn()" [routerLink]="['/admin/posts']">View my posts</a>        
+        <a *ngIf="auth.isLoggedIn()" [routerLink]="['/admin/posts/create']">Create Post</a>
+        <a *ngIf="auth.isLoggedIn()" (click)="logout()">Logout</a>
+        
+    </div>
+</div>
