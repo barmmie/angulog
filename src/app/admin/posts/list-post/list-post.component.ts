@@ -22,9 +22,9 @@ export class ListPostComponent implements OnInit {
     .subscribe((res) => {
       this.posts = res;
     }, err => {
-
+      const error = err.error || err;
       const message = 'An error occured while loading posts. Please try again';
-      this.alert.error(err.message? err.message:message);
+      this.alert.error(error.message? error.message:message);
     })
   }
 
@@ -59,8 +59,9 @@ export class ListPostComponent implements OnInit {
     .subscribe(res => {
       this.loadPosts();
     }, err => {
+        const error = err.error || err;
       const message = 'An error occured while deleteing this post.';
-      this.alert.error(err.message? err.message:message);
+      this.alert.error(error.message? error.message:message);
     })
   }
 
