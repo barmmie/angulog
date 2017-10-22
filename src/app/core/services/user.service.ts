@@ -10,6 +10,6 @@ export class UserService {
     constructor(private http: HttpClient) { }
 
     create(user) {
-        return this.http.post(`${this.url}/register`, user).map((response: Response) => response.json());
+        return this.http.post(`${this.url}/register`, user);
     }
 }
