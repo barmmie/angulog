@@ -1,4 +1,4 @@
-import { ActivatedRoute,  } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from './../../../core/services/alert.service';
 import { PostService } from './../../../core/services/post.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +12,9 @@ import { Location } from '@angular/common';
 export class EditPostComponent implements OnInit {
 
   post:any = {};
-  constructor(public postService:PostService, public alertService:AlertService, public route:ActivatedRoute, public location: Location) { }
+  loading = false;
+  constructor(public postService:PostService, public alertService:AlertService, 
+    public route:ActivatedRoute, public location: Location, public router:Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -31,6 +33,20 @@ export class EditPostComponent implements OnInit {
     }) 
 
   }
+
+  update()  {
+    this.loading = true;
+    this.postService.update(this.post.id, this.post)
+    .subscribe(res => {
+      this.loading= false;
+      this.alertService.info('Post updated successfully');
+      this.router.navigate(['admin/posts']);
+    }, err => {
+      this.loading = false;
+      this.alertService.error(`Error occured: ${err}`)
+    })
+  }
+
 
   goBack() {
     this.location.back()

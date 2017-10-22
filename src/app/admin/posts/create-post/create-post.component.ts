@@ -28,8 +28,10 @@ export class CreatePostComponent implements OnInit {
               data => {
                   this.alertService.success('Post created successful', true);
                   this.router.navigate(['/admin/posts']);
+                  this.loading = false;
               },
               error => {
+                  console.dir(error);
                   this.alertService.error(error);
                   this.loading = false;
               });

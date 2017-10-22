@@ -1,4 +1,3 @@
-import { HttpModule } from '@angular/http';
 import { UserService } from './services/user.service';
 import { AlertService } from './services/alert.service';
 import { PostService } from './services/post.service';
@@ -14,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   imports: [
     CommonModule,
-    HttpModule,
     HttpClientModule
   ],
   declarations: [AlertComponent],

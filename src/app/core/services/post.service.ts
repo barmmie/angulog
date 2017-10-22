@@ -35,10 +35,8 @@ update(id, post) {
     return this.http.put(`${environment.apiUrl}posts/${id}`, post);
 }
 
-
-
-  deletePost(id: number) {
-      return this.http.delete(`${environment.apiUrl}posts/${id}`);
-  }
+deletePost(id: number) {
+      return this.http.delete(`${environment.apiUrl}posts/${id}`);  
+}
 
 }

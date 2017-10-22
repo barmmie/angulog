@@ -1,4 +1,4 @@
-import { Headers, Http } from '@angular/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from './../../../environments/environment';
 export const TOKEN_NAME: string = 'jwt_token';
@@ -7,9 +7,9 @@ import "rxjs/add/operator/shareReplay";
 @Injectable()
 export class AuthService {
 
-  private headers = new Headers({ 'Content-Type': 'application/json' });
+  private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  constructor(private http: Http) {   }
+  constructor(private http: HttpClient) {   }
 
   getToken(): string {
     return localStorage.getItem(TOKEN_NAME);
@@ -42,7 +42,7 @@ export class AuthService {
   login(user) {
     return this.http
       .post(`${environment.apiUrl}login`, JSON.stringify(user), { headers: this.headers })
-      .do(res => this.setToken(res.json()))
+      .do(res => this.setToken(res))
       .shareReplay();
   }
 
