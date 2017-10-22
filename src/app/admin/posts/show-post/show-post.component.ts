@@ -26,8 +26,11 @@ export class ShowPostComponent implements OnInit {
     .subscribe(res => {
       this.post = res;
 
-    }, err => {
-      this.alertService.error('Error occured while loading post')
+    },  err => {
+      
+      const error = err.error instanceof Error ? err.error : err;
+      const message = 'Error occured while loading post'
+      this.alertService.error(error.message ? error.message : message)
     }) 
 
   }

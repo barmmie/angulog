@@ -1,3 +1,4 @@
+import { JwtInterceptor } from './support/jwt.interceptor';
 import { UserService } from './services/user.service';
 import { AlertService } from './services/alert.service';
 import { PostService } from './services/post.service';
@@ -20,6 +21,11 @@ import { HttpClientModule } from '@angular/common/http';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
       multi: true
     }, AuthService, PostService, AlertService, UserService
   ],

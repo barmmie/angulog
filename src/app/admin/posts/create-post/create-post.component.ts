@@ -21,7 +21,7 @@ export class CreatePostComponent implements OnInit {
       private postService: PostService,
       private alertService: AlertService) { }
 
-  register() {
+  save() {
       this.loading = true;
       this.postService.create(this.model)
           .subscribe(
@@ -30,9 +30,11 @@ export class CreatePostComponent implements OnInit {
                   this.router.navigate(['/admin/posts']);
                   this.loading = false;
               },
-              error => {
-                  console.dir(error);
-                  this.alertService.error(error);
+              err => {
+
+                const error = err.error instanceof Error ? err.error : err;
+                  const message = 'An error occured while saving this post';
+                  this.alertService.error(error.message ? error.message : message);
                   this.loading = false;
               });
   }

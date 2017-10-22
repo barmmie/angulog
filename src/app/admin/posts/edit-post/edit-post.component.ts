@@ -29,7 +29,10 @@ export class EditPostComponent implements OnInit {
       this.post = res;
 
     }, err => {
-      this.alertService.error('Error occured while loading post')
+      
+      const error = err.error instanceof Error ? err.error : err;
+      const message = 'Error occured while loading this post';
+      this.alertService.error(error.message ? error.message : message)
     }) 
 
   }
@@ -42,8 +45,12 @@ export class EditPostComponent implements OnInit {
       this.alertService.info('Post updated successfully');
       this.router.navigate(['admin/posts']);
     }, err => {
+      
+      const error = err.error instanceof Error ? err.error : err;
       this.loading = false;
-      this.alertService.error(`Error occured: ${err}`)
+      console.dir(error);
+      const message = 'Error occured while saving this post';
+      this.alertService.error(error.message ? error.message : message)
     })
   }
 

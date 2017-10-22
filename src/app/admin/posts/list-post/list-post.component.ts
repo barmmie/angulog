@@ -20,10 +20,11 @@ export class ListPostComponent implements OnInit {
   loadPosts() {
     this.postService.getAllForUser()
     .subscribe((res) => {
-      console.dir(res);
       this.posts = res;
     }, err => {
-      this.alert.error('An error occured while loading posts. Please try again');
+
+      const message = 'An error occured while loading posts. Please try again';
+      this.alert.error(err.message? err.message:message);
     })
   }
 
@@ -54,7 +55,8 @@ export class ListPostComponent implements OnInit {
     .subscribe(res => {
       this.loadPosts();
     }, err => {
-      this.alert.error('An error occured while deleteing this post.');
+      const message = 'An error occured while deleteing this post.';
+      this.alert.error(err.message? err.message:message);
     })
   }
 
