@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://larlog.devcyber.com/api/',
+  apiUrl: 'http://larblog.devcyber.com/api/',
   
 };
