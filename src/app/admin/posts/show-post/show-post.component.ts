@@ -28,7 +28,7 @@ export class ShowPostComponent implements OnInit {
 
     },  err => {
       
-      const error = err.error instanceof Error ? err.error : err;
+      const error = err.error || err
       const message = 'Error occured while loading post'
       this.alertService.error(error.message ? error.message : message)
     }) 

@@ -10,13 +10,14 @@ import { TokenInterceptor } from './support/token.interceptor';
 import { FormsModule }   from '@angular/forms';
 import { AlertComponent } from './components/alert/alert.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DateFormatPipe } from './pipes/date-format.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule
   ],
-  declarations: [AlertComponent],
+  declarations: [AlertComponent, DateFormatPipe],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
@@ -27,10 +28,11 @@ import { HttpClientModule } from '@angular/common/http';
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
-    }, AuthService, PostService, AlertService, UserService
+    }, AuthService, PostService, AlertService, UserService, DateFormatPipe
   ],
   exports: [
-    AlertComponent
+    AlertComponent,
+    DateFormatPipe
   ]
 })
 export class CoreModule { }

@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
               },
               err => {
                 
-                const error = err.error instanceof Error ? err.error : err;
+                const error = err.error || err
                 const message = 'Error occured while saving this post';
                 this.alertService.error(error.message ? error.message : message)
                 this.loading = false;

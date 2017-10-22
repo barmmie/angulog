@@ -48,6 +48,10 @@ export class ListPostComponent implements OnInit {
 
   deletePost(post, idx) {
 
+    if(! confirm('Irreversible! Are you sure you want to delete thispost.')) {
+      return;
+    }
+
     if(!post.id) {
       return;
     }

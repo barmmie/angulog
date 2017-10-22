@@ -6,11 +6,11 @@
     "ng": "ng",
     "start": "node server.js",
     "build": "ng build",
-    "build_dokku": "HOME=/ ./node_modules/@angular/cli/bin/ng build -prod -aot",
+    "build_dokku": "HOME=/ ./node_modules/@angular/cli/bin/ng build -prod --aot",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "npm run build_prod",
+    "postinstall": "npm run build_dokku",
     "build_prod": "npm run build_dokku && browserify -s main dist/main.js > dist/bundle.js && npm run minify",
     "minify": "uglifyjs dist/bundle.js --screw-ie8 --compress --mangle --output dist/bundle.min.js"  
   },
