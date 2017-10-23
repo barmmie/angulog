@@ -1,3 +1,4 @@
+import { AuthGuard } from './guards/auth.guard';
 import { JwtInterceptor } from './support/jwt.interceptor';
 import { UserService } from './services/user.service';
 import { AlertService } from './services/alert.service';
@@ -28,7 +29,7 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
-    }, AuthService, PostService, AlertService, UserService, DateFormatPipe
+    }, AuthService, PostService, AlertService, UserService, DateFormatPipe, AuthGuard
   ],
   exports: [
     AlertComponent,
